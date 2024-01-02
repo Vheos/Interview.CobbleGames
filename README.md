@@ -1,52 +1,58 @@
-# Zadanie testowe - Programista MID i JUNIOR
+## Deadline
+- [ ] projektowanie: `2024-01-09`
+- [ ] implementacja: `2024-01-16 23:59:59`
 
-[Figma Design doc](https://www.figma.com/file/pUixMKYzkMDAbra5tucKCR/CobbleGames?type=design&node-id=0%3A1&mode=design&t=Xccxsu8I3Vc8I8B2-1)
+</br>
 
-Utwórz system zaznaczania i poruszania się po mapie z widokiem typu izometrycznego grupą trzech (lub więcej) postaci, w której wydajemy polecenie poruszania się klikając myszką na mapie a wybrana postać porusza się od punktu A do punktu B.
+## Opis projektu
+- [ ] system poruszania grupą postaci po mapie
+  - [ ] N postaci
+  - [ ] jedna z postaci jest przewodnikiem
+  - [ ] klik -> przewodnik rusza do punktu pod kursorem
+  - [ ] pozostałe postacie podążają za nią
+- [ ] atrybuty postaci:
+  - [ ] prędkość (`Move Speed`)
+  - [ ] zwrotność (`Turn Speed`)
+  - [ ] wytrzymałość (`Health`)
+  - [ ] początkowe wartości są losow generowane przy starcie gry
+- [ ] widok izometryczny
+- [ ] UI wyboru przewodnika
 
-Wybrana postać staje się przewodnikiem kolejnych postaci, które podążają za nią.
+</br>
 
-Każda postać ma swoje współczynniki prędkości, zwrotności i wytrzymałości, które losowo są generowane przy każdym starcie prototypu.
+## Wymagania
+- **Ogólne**
+  - [ ] schemat blokowy klas i rozwiązania
+  - [ ] implementacja dopiero po zatwierdzeniu
+  - [ ] komunikacja i sposób myślenia > programowanie
+  - [ ] grafika nie jest oceniana
+- **Programowanie**
+  - [ ] czytelny i spójny kod
+  - [ ] poprawne commity
+  - [ ] interface
+  - [ ] async/await
+  - [ ] komendy prekompilatora
+- **Unity**
+  - [ ] najnowszy LTS (`2022.3.16f1`)
+  - [ ] A* zamiast NavMesh
+  - [ ] scriptable
+  - [ ] addressable
+  - [ ] flexible Canvas
+  - [ ] save/load mapy i atrybutów
 
-Wybór postaci ma być możliwy przez naciśnięcie jednego z trzech (lub więcej) przycisków na canvas.
+</br>
 
-Wymagania dla Junior:
-- system może opierać się na wbudowanym w Unity Navmesh AI
-- kod jest czytelny i spójny
-- Canvas wspiera różne rozdzielczości ekranu i odpowiednio się formatuje
-- kod jest poprawnie commitowany na publiczne repozytorium
+## Załączniki
 
-Wymagania dla Junior +
-- zamiast wbudowanego Navmesh AI zostaje użyta jakaś forma własnej implementacji algorytmu A Star
-- zaimplementowane są scriptable objects
+- [Figma design doc](https://www.figma.com/file/pUixMKYzkMDAbra5tucKCR/CobbleGames?type=design&node-id=0%3A1&mode=design&t=Xccxsu8I3Vc8I8B2-1)
+- [PDF z instrukcją](https://github.com/Vheos/Interview.CobbleGames/files/13811324/Zadanie.testowe.-.Programista.Mid.i.Junior.pdf)
+- <details><summary>Treść maila</summary>
   
-Wymagania na Mid
-- jest możliwy w trakcie rozgrywki zapis i odczyt ustawień mapy i współczynników do pliku
-- użyte są addressable
-- użyte są async i await (np w zapisie plików)
-- użyte są komendy prekompilatora
-- użyte są interface
-
-## Faza 1
-
-Projektowanie:
-
-Osoba zaczynająca zadanie zaproponuje diagram klas i rozpisze całe rozwiązanie w postaci
-schematu blokowego. Dopiero po akceptacji rozwiązania przechodzimy do Fazy 2
-
-## Faza 2
-
-Implementacja kodu na bazie rozwiązania zaproponowanego w Fazie 1
-
-## Faza 3
-
-Ustne omówienie problemów, toku myślenia i rozwiązań podczas rozmowy online
-
-Czas trwania 2 tygodnie. Rezultaty należy dostarczyć na publicznie dostępnym repozytorium
-kodu. Przy czym jakość commitów i ich opis też jest przedmiotem oceny a projekt musi być
-możliwy do kompilacji. Grafiki nie są przedmiotem oceny i mogą być użyte zastępcze lub
-symboliczne.
-
-Silnik użyty - Najnowsze Unity w wersji LTS.
-
-[_Original instructions PDF_](https://github.com/Vheos/Interview.CobbleGames/files/13811324/Zadanie.testowe.-.Programista.Mid.i.Junior.pdf)
+  >  ...
+  > 
+  >  Zadanie należy dostarczyć w postaci wykonywalnego i możliwego do kompilacji kodu projektu Unity dostępnego na publicznym repozytorium. Ostatni commit ma być wykonany do północy dnia 16 stycznia 2024.
+  > 
+  > Nim zaczniesz kodować to przeczytaj uważnie treść zadania, zadaj pytania i przejdź wszystkie fazy wymienione w PDF. Samo kodowanie nie jest dla nas tak ważne jak umiejętność komunikacji i sposób myślenia. Do 9 stycznia będę odpowiadać na twoje maile z pytaniami. Potem już działasz samodzielnie.
+  >
+  > ...
+  </details>

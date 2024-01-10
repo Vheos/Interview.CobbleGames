@@ -6,11 +6,16 @@
 	{
 		// Dependencies
 		[field: SerializeField] public CharacterCollector Collector { get; private set; }
+		[field: SerializeField] public FollowTarget FollowTarget { get; private set; }
+		[field: SerializeField] public LookAtTarget LookAtTarget { get; private set; }
 		[field: SerializeField] public CharacterAttributesRange AttributesRange { get; private set; }
 
 		// Fields
 		public CharacterAttributes Attributes { get; private set; }
 
+		// Methods
+		public void SetTarget(Transform target)
+			=> FollowTarget.Target = LookAtTarget.Target = target;
 		// Unity
 		private void Awake()
 		{

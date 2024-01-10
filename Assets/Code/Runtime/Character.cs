@@ -1,5 +1,7 @@
 ﻿namespace Vheos.Interview.CobbleGames
 {
+	using System;
+	using System.Threading.Tasks;
 	using UnityEngine;
 
 	public class Character : MonoBehaviour
@@ -16,6 +18,9 @@
 		// Methods
 		public void SetTarget(Transform target)
 			=> FollowTarget.Target = LookAtTarget.Target = target;
+		public Task MoveTo(Vector3 point)
+			=> throw new NotImplementedException();
+
 		// Unity
 		private void Awake()
 		{

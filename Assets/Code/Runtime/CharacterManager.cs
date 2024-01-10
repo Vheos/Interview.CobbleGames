@@ -62,6 +62,16 @@
 		}
 		private void Start()
 			=> Leader = StartingLeader;
+#if DEBUG
+		private void Update()
+		{
+			if (Keyboard.current.rKey.wasPressedThisFrame)
+			{
+				int index = UnityEngine.Random.Range(0, Collector.Items.Count);
+				Leader = Collector.Items.ElementAt(index);
+			}
+		}
+#endif
 		private void OnDisable()
 		{
 			Collector.OnRegister -= SetLeader;

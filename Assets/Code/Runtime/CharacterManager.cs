@@ -1,7 +1,9 @@
 ﻿namespace Vheos.Interview.CobbleGames
 {
 	using System;
+	using System.Linq;
 	using UnityEngine;
+	using UnityEngine.InputSystem;
 
 	public class CharacterManager : MonoBehaviour, ISpawner<Character>
 	{
@@ -43,15 +45,13 @@
 			return newCharacter;
 		}
 		private void SetLeader(Character character)
-			=> character.SetTarget(leader.transform);
+			=> character.Follow(leader.transform);
 		private void MoveLeader(Pointer pointer)
 		{
 			if (leader == null || !pointer.TryGetWalkablePoint(Camera, out var point))
 				return;
 
-			// TODO
 			leader.MoveTo(point);
-			Debug.Log($"Move {(leader != null ? leader.name : "null")} to {point}");
 		}
 
 		// Unity
@@ -60,7 +60,7 @@
 			Collector.OnRegister += SetLeader;
 			OnPointerClicked.Subscribe(MoveLeader);
 		}
-		private void Start()
+		private void Awake()
 			=> Leader = StartingLeader;
 #if DEBUG
 		private void Update()

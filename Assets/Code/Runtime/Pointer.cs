@@ -4,14 +4,12 @@
 	using UnityEngine;
 	using UnityEngine.InputSystem;
 
-	public class Pointer : MonoBehaviour, IClicker
+	public class Pointer : MonoBehaviour
 	{
 		// Dependencies
 		[field: SerializeField] public InputActionReference ClickAction { get; private set; }
 		[field: SerializeField] public InputActionReference Position { get; private set; }
-
-		// Events
-		public event Action OnClick;
+		[field: SerializeField] public PointerEvent OnPointerClicked { get; private set; }
 
 		// Methods
 		public Vector2 ScreenPosition
@@ -30,12 +28,10 @@
 			point = default;
 			return false;
 		}
-		public void Click()
-			=> OnClick?.Invoke();
 		private void Click(InputAction.CallbackContext context)
 		{
 			if (context.ReadValueAsButton())
-				Click();
+				OnPointerClicked.Invoke(this);
 		}
 
 		// Unity

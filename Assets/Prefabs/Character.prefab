@@ -93,6 +93,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5049009625839961797}
   - component: {fileID: 1036910966860327410}
+  - component: {fileID: 1018374957625600925}
+  - component: {fileID: 8746635360119791109}
+  - component: {fileID: 7402027217314097301}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -129,6 +132,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Collector>k__BackingField: {fileID: 11400000, guid: 10fe2191d27d7d747b22a09a64fd222c, type: 2}
+  <Mover>k__BackingField: {fileID: 1018374957625600925}
+  <Follower>k__BackingField: {fileID: 8746635360119791109}
+  <AttributesRange>k__BackingField: {fileID: 11400000, guid: 2794bbd126d06f64fb79a914bbec505f, type: 2}
+--- !u!114 &1018374957625600925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277917143789749660}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba115d90233b2f4418e3e824412abc74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Target>k__BackingField: {x: 0, y: 0, z: 0}
+  <Speed>k__BackingField: 5
+  <MaxDistance>k__BackingField: 1
+  <MinDistance>k__BackingField: 0
+  <Autorestart>k__BackingField: 0
+--- !u!114 &8746635360119791109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277917143789749660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b14895a5c79fde4b99cbc868aadb6bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Target>k__BackingField: {fileID: 0}
+  <Speed>k__BackingField: 5
+  <MaxDistance>k__BackingField: 2
+  <MinDistance>k__BackingField: 1
+  <Autorestart>k__BackingField: 1
+--- !u!114 &7402027217314097301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277917143789749660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cbbaaa0e8829aa489388466ca696852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Speed>k__BackingField: 10
 --- !u!1 &2389066457870208852
 GameObject:
   m_ObjectHideFlags: 0

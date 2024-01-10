@@ -5,7 +5,7 @@
 	public class FollowTarget : MonoBehaviour
 	{
 		// Fields
-		[field: SerializeField] public Transform Target { get; private set; }
+		[field: SerializeField] public Transform Target { get; set; }
 		[field: SerializeField, Range(0f, 10f)] public float MaxDistance { get; private set; }
 		[field: SerializeField, Range(0f, 10f)] public float MinDistance { get; private set; }
 		[field: SerializeField, Range(0f, 10f)] public float Speed { get; private set; }

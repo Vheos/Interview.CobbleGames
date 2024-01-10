@@ -1,29 +1,34 @@
 ## Deadline
-- [ ] projektowanie: `2024-01-09`
+- [x] projektowanie: `2024-01-09`
 - [ ] implementacja: `2024-01-16 23:59:59`
 
 </br>
 
 ## Opis projektu
-- [ ] system poruszania grupą postaci po mapie
-  - [ ] N postaci
-  - [ ] jedna z postaci jest przewodnikiem
-  - [ ] klik -> przewodnik rusza do punktu pod kursorem
-  - [ ] pozostałe postacie podążają za nią
-- [ ] atrybuty postaci:
-  - [ ] prędkość (`Move Speed`)
-  - [ ] zwrotność (`Turn Speed`)
-  - [ ] wytrzymałość (`Health`)
-  - [ ] początkowe wartości są losow generowane przy starcie gry
-- [ ] widok izometryczny
+- [x] system poruszania grupą postaci po mapie
+  - [x] N postaci
+  - [x] jedna z postaci jest przewodnikiem
+  - [x] klik -> przewodnik rusza do punktu pod kursorem
+  > event kliknięcia jest prezkazywany z obiektu `Pointer` do `CharacterManager` za pośrednictwem prostego `ScriptableObject`
+  - [x] pozostałe postacie podążają za nią
+  > postacie nie mają informacji o innych postaciach ani o managerze postaci. Więdza jedynie gdzie lub za kim iść 
+- [x] atrybuty postaci:
+  - [x] prędkość (`Move Speed`)
+  > używany przy poruszaniu
+  - [x] zwrotność (`Turn Speed`)
+  > póki co nieużyawny, trzeba by zmienić logikę poruszania na MoveForward + RotateTowardsTarget
+  - [x] wytrzymałość (`Health`)
+  - [x] początkowe wartości są losowo generowane przy starcie gry
+- [x] widok izometryczny
 - [ ] UI wyboru przewodnika
+  - [ ] działa na różnych aspect ratio
 
 </br>
 
 ## Wymagania
 - **Ogólne**
-  - [ ] schemat blokowy klas i rozwiązania
-  - [ ] implementacja dopiero po zatwierdzeniu
+  - [x] schemat blokowy klas i rozwiązania
+  - [x] implementacja dopiero po zatwierdzeniu
   - [ ] komunikacja i sposób myślenia > programowanie
   - [ ] grafika nie jest oceniana
 - **Programowanie**
@@ -33,11 +38,10 @@
   - [ ] async/await
   - [ ] komendy prekompilatora
 - **Unity**
-  - [ ] najnowszy LTS (`2022.3.16f1`)
+  - [x] najnowszy LTS (`2022.3.16f1`)
   - [ ] A* zamiast NavMesh
-  - [ ] scriptable
+  - [x] scriptable
   - [ ] addressable
-  - [ ] flexible Canvas
   - [ ] save/load mapy i atrybutów
 
 </br>

@@ -11,7 +11,7 @@
 			&& Target.z != float.NaN;
 		public override Vector3 Direction
 			=> (Target - transform.position).normalized;
-		public override float Distance 
+		public override float Distance
 			=> (Target - transform.position).magnitude;
 	}
 }

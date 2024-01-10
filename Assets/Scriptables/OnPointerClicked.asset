@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0dcc98189a66d754f8addd42039e7ae7, type: 3}
-  m_Name: PointerEvent
+  m_Name: OnPointerClicked
   m_EditorClassIdentifier: 

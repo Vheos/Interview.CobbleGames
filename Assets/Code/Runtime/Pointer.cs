@@ -17,6 +17,20 @@
 		// Methods
 		public Vector2 ScreenPosition
 			=> Position.action.ReadValue<Vector2>();
+		public bool TryGetWalkablePoint(Camera camera, out Vector3 point)
+		{
+			Ray ray = camera.ScreenPointToRay(ScreenPosition);
+			float distance = float.PositiveInfinity;
+			int layerMask = Layer.Walkable.GetMask();
+			if (Physics.Raycast(ray, out var hit, distance, layerMask, QueryTriggerInteraction.Collide))
+			{
+				point = hit.point;
+				return true;
+			}
+
+			point = default;
+			return false;
+		}
 		public void Click()
 		{
 #if DEBUG

@@ -32,12 +32,15 @@
 			return false;
 		}
 		public void Click()
+		private void Click(InputAction.CallbackContext context)
 		{
 #if DEBUG
 			Debug.Log($"Clicked at {ScreenPosition}");
 #endif
 			Camera.ScreenPointToRay(ScreenPosition);
 			OnClick?.Invoke();
+			if (context.ReadValueAsButton())
+				Click();
 		}
 		private void Click(InputAction.CallbackContext _)
 			=> Click();

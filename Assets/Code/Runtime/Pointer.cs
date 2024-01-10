@@ -7,7 +7,6 @@
 	public class Pointer : MonoBehaviour, IClicker
 	{
 		// Dependencies
-		[field: SerializeField] public Camera Camera { get; private set; }
 		[field: SerializeField] public InputActionReference ClickAction { get; private set; }
 		[field: SerializeField] public InputActionReference Position { get; private set; }
 
@@ -32,18 +31,12 @@
 			return false;
 		}
 		public void Click()
+			=> OnClick?.Invoke();
 		private void Click(InputAction.CallbackContext context)
 		{
-#if DEBUG
-			Debug.Log($"Clicked at {ScreenPosition}");
-#endif
-			Camera.ScreenPointToRay(ScreenPosition);
-			OnClick?.Invoke();
 			if (context.ReadValueAsButton())
 				Click();
 		}
-		private void Click(InputAction.CallbackContext _)
-			=> Click();
 
 		// Unity
 		private void OnEnable()

@@ -12,13 +12,13 @@
 		[field: SerializeField] public CharacterCollector Collector { get; private set; }
 		[field: SerializeField] public Character Prefab { get; private set; }
 		[field: SerializeField] public PointerEvent OnPointerClicked { get; private set; }
+		[field: SerializeField] public CharacterEvent OnCharacterPanelClicked { get; private set; }
 
 		// Events
 		public event Action<Character> OnSpawn;
 		public event Action<Character> OnChangeLeader;
 
 		// Fields
-		[field: SerializeField] public Character StartingLeader { get; private set; }
 		private Character leader;
 
 		// Methods
@@ -31,9 +31,8 @@
 					return;
 
 				leader = value;
-
 				foreach (var character in Collector.Items)
-					SetLeader(character);
+					SetAsFollower(character);
 
 				OnChangeLeader?.Invoke(leader);
 			}
@@ -44,8 +43,24 @@
 			OnSpawn?.Invoke(newCharacter);
 			return newCharacter;
 		}
-		private void SetLeader(Character character)
+		private void SetAsLeaderOrFollower(Character character)
+		{
+			if (leader == null)
+				SetAsLeader(character);
+			else
+				SetAsFollower(character);
+		}
+		private void SetAsLeader(Character character)
+			=> Leader = character;
+		private void SetAsFollower(Character character)
 			=> character.Follow(leader.transform);
+		private void TrySetNewLeader(Character character)
+		{
+			if (character != leader || Collector.Items.Count == 0)
+				return;
+
+			Leader = Collector.Items.First();
+		}
 		private void MoveLeader(Pointer pointer)
 		{
 			if (leader == null || !pointer.TryGetWalkablePoint(Camera, out var point))
@@ -55,26 +70,20 @@
 		}
 
 		// Unity
+		private void Awake()
+			=> Collector.Items.DoForEach(SetAsLeaderOrFollower);
 		private void OnEnable()
 		{
-			Collector.OnRegister += SetLeader;
+			Collector.OnRegister += SetAsLeaderOrFollower;
+			Collector.OnUnregister += TrySetNewLeader;
+			OnCharacterPanelClicked.Subscribe(SetAsLeader);
 			OnPointerClicked.Subscribe(MoveLeader);
 		}
-		private void Awake()
-			=> Leader = StartingLeader;
-#if DEBUG
-		private void Update()
-		{
-			if (Keyboard.current.rKey.wasPressedThisFrame)
-			{
-				int index = UnityEngine.Random.Range(0, Collector.Items.Count);
-				Leader = Collector.Items.ElementAt(index);
-			}
-		}
-#endif
 		private void OnDisable()
 		{
-			Collector.OnRegister -= SetLeader;
+			Collector.OnRegister -= SetAsLeaderOrFollower;
+			Collector.OnUnregister -= TrySetNewLeader;
+			OnCharacterPanelClicked.Unsubscribe(SetAsLeader);
 			OnPointerClicked.Unsubscribe(MoveLeader);
 		}
 	}

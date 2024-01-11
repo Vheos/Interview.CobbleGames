@@ -134,7 +134,9 @@ MonoBehaviour:
   <Collector>k__BackingField: {fileID: 11400000, guid: 10fe2191d27d7d747b22a09a64fd222c, type: 2}
   <Mover>k__BackingField: {fileID: 1018374957625600925}
   <Follower>k__BackingField: {fileID: 8746635360119791109}
+  <Looker>k__BackingField: {fileID: 7402027217314097301}
   <AttributesRange>k__BackingField: {fileID: 11400000, guid: 2794bbd126d06f64fb79a914bbec505f, type: 2}
+  <Renderer>k__BackingField: {fileID: 8782217829563834048}
 --- !u!114 &1018374957625600925
 MonoBehaviour:
   m_ObjectHideFlags: 0

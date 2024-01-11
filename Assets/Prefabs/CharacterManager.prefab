@@ -48,3 +48,5 @@ MonoBehaviour:
   <Collector>k__BackingField: {fileID: 11400000, guid: 10fe2191d27d7d747b22a09a64fd222c, type: 2}
   <Prefab>k__BackingField: {fileID: 1036910966860327410, guid: d1ae09d9aaee46a4e8d1283b05de0629, type: 3}
   <OnPointerClicked>k__BackingField: {fileID: 11400000, guid: 8ca1f8b199c84b842a0bc9897d34f0fa, type: 2}
+  <OnCharacterPanelClicked>k__BackingField: {fileID: 11400000, guid: 06ad2c55e734f8345b5b5fe543fc0795, type: 2}
+  <StartingLeader>k__BackingField: {fileID: 0}

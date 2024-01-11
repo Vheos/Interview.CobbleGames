@@ -2,7 +2,7 @@
 {
 	using UnityEngine;
 
-	[CreateAssetMenu(fileName = nameof(CharacterCollector), menuName = Const.AssetMenuPath + nameof(CharacterCollector))]
+	[CreateAssetMenu(fileName = nameof(CharacterCollector), menuName = AssetMenuPaths.Root + nameof(CharacterCollector))]
 	public class CharacterCollector : ScriptableCollector<Character>
 	{ }
 }

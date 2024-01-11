@@ -4,7 +4,6 @@
 	using System.Collections.Generic;
 	using System.Linq;
 	using UnityEngine;
-	using UnityEngine.UIElements;
 
 	public static class Extensions
 	{
@@ -14,7 +13,7 @@
 			=> new(@this.r, @this.g, @this.b, a);
 		public static void DoForEach<T>(this IEnumerable<T> @this, Action<T> action)
 		{
-			foreach(var @item in @this)
+			foreach (var @item in @this)
 				action(@item);
 		}
 		public static bool TryGetFirst<T>(this IEnumerable<T> @this, out T element, Func<T, bool> predicate)

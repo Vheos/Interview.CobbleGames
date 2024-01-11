@@ -1,6 +1,5 @@
 ﻿namespace Vheos.Interview.CobbleGames
 {
-	using System.Linq;
 	using UnityEngine;
 
 	public class Character : MonoBehaviour

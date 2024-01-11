@@ -3,7 +3,6 @@
 	using System;
 	using System.Linq;
 	using UnityEngine;
-	using UnityEngine.InputSystem;
 
 	public class CharacterManager : MonoBehaviour, ISpawner<Character>
 	{

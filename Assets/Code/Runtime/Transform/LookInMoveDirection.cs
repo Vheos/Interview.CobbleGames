@@ -5,7 +5,7 @@
 	public class LookInMoveDirection : MonoBehaviour
 	{
 		// Fields
-		[field: SerializeField, Range(0f, 10f)] public float Speed { get; private set; }
+		[field: SerializeField, Range(0f, 10f)] public float Speed { get; set; }
 		private Vector3 previousPosition;
 
 		// Methods

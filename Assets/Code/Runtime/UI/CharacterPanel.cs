@@ -13,11 +13,13 @@
 		[field: SerializeField] public TextMeshProUGUI MoveSpeedText { get; private set; }
 		[field: SerializeField] public TextMeshProUGUI TurnSpeedText { get; private set; }
 		[field: SerializeField] public TextMeshProUGUI HealthText { get; private set; }
-		[field: SerializeField] public CharacterEvent OnClicked { get; private set; }
-		private Character character;
 
 		// Fields
 		[field: SerializeField, Range(0f, 1f)] public float BackgroundOpacity { get; private set; }
+		private Character character;
+
+		// Events
+		[field: SerializeField] public CharacterEvent OnClicked { get; private set; }
 
 		// Methods
 		public Character Character

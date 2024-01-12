@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CharacterCollector>k__BackingField: {fileID: 11400000, guid: 10fe2191d27d7d747b22a09a64fd222c, type: 2}
   <Prefab>k__BackingField: {fileID: 157826408185926919, guid: 24e3c803b1801ce40908a5e9e21389f8, type: 3}
+  <OnLeaderChanged>k__BackingField: {fileID: 11400000, guid: ea9f98b3a69f3904d96365202b36ccec, type: 2}
 --- !u!114 &3954856528268072242
 MonoBehaviour:
   m_ObjectHideFlags: 0

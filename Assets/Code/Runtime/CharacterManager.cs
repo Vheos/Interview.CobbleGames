@@ -10,15 +10,15 @@
 		[field: SerializeField] public Camera Camera { get; private set; }
 		[field: SerializeField] public CharacterCollector Collector { get; private set; }
 		[field: SerializeField] public Character Prefab { get; private set; }
-		[field: SerializeField] public PointerEvent OnPointerClicked { get; private set; }
-		[field: SerializeField] public CharacterEvent OnCharacterPanelClicked { get; private set; }
-
-		// Events
-		public event Action<Character> OnSpawn;
-		public event Action<Character> OnChangeLeader;
 
 		// Fields
 		private Character leader;
+
+		// Events
+		[field: SerializeField] public PointerEvent OnPointerClicked { get; private set; }
+		[field: SerializeField] public CharacterEvent OnCharacterPanelClicked { get; private set; }
+		[field: SerializeField] public CharacterEvent OnLeaderChanged { get; private set; }
+		public event Action<Character> OnSpawn;
 
 		// Methods
 		public Character Leader
@@ -30,10 +30,11 @@
 					return;
 
 				leader = value;
-				foreach (var character in Collector.Items)
-					SetAsFollower(character);
 
-				OnChangeLeader?.Invoke(leader);
+				Collector.Items.DoForEach(SetAsFollower);
+				leader.Lead();
+
+				OnLeaderChanged.Invoke(leader);
 			}
 		}
 		public Character Spawn()

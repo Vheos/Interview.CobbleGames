@@ -9,19 +9,15 @@
   - [x] N postaci
   - [x] jedna z postaci jest przewodnikiem
   - [x] klik -> przewodnik rusza do punktu pod kursorem
-  > event kliknięcia jest prezkazywany z obiektu `Pointer` do `CharacterManager` za pośrednictwem prostego `ScriptableObject`
   - [x] pozostałe postacie podążają za nią
-  > postacie nie mają informacji o innych postaciach ani o managerze postaci. Więdza jedynie gdzie lub za kim iść 
 - [x] atrybuty postaci:
   - [x] prędkość (`Move Speed`)
-  > używany przy poruszaniu
   - [x] zwrotność (`Turn Speed`)
-  > póki co nieużyawny, trzeba by zmienić logikę poruszania na MoveForward + RotateTowardsTarget
   - [x] wytrzymałość (`Health`)
   - [x] początkowe wartości są losowo generowane przy starcie gry
 - [x] widok izometryczny
-- [ ] UI wyboru przewodnika
-  - [ ] działa na różnych aspect ratio
+- [x] UI wyboru przewodnika
+  - [x] działa na różnych aspect ratio
 
 </br>
 
@@ -43,6 +39,12 @@
   - [x] scriptable
   - [ ] addressable
   - [ ] save/load mapy i atrybutów
+
+</br>
+
+## Wykorzystane schematy
+- ScriptableObject events
+- ScriptableObject runtime collections
 
 </br>
 

@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: CharacterAttributesRange
   m_EditorClassIdentifier: 
   <Min>k__BackingField:
-    MoveSpeed: 1
-    TurnSpeed: 1
+    MoveSpeed: 2
+    TurnSpeed: 3
     Health: 10
+    Color: {r: 0.7490196, g: 0.5617647, b: 0.5617647, a: 1}
   <Max>k__BackingField:
-    MoveSpeed: 5
-    TurnSpeed: 5
-    Health: 50
+    MoveSpeed: 6
+    TurnSpeed: 9
+    Health: 90
+    Color: {r: 1, g: 0.25, b: 0.26176453, a: 1}

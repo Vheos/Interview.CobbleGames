@@ -8,7 +8,7 @@
 		// Dependencies
 		[field: SerializeField] public InputActionReference ClickAction { get; private set; }
 		[field: SerializeField] public InputActionReference PointAction { get; private set; }
-		[field: SerializeField] public PointerEvent OnPointerClicked { get; private set; }
+		[field: SerializeField] public PointerEvent OnClicked { get; private set; }
 
 		// Methods
 		public bool TryGetWalkablePoint(Camera camera, out Vector3 point)
@@ -30,7 +30,7 @@
 		private void Click(InputAction.CallbackContext context)
 		{
 			if (context.ReadValueAsButton())
-				OnPointerClicked.Invoke(this);
+				OnClicked.Invoke(this);
 		}
 
 		// Unity

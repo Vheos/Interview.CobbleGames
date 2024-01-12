@@ -50,4 +50,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ClickAction>k__BackingField: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   <PointAction>k__BackingField: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  <OnPointerClicked>k__BackingField: {fileID: 11400000, guid: 8ca1f8b199c84b842a0bc9897d34f0fa, type: 2}
+  <OnClicked>k__BackingField: {fileID: 11400000, guid: 8ca1f8b199c84b842a0bc9897d34f0fa, type: 2}

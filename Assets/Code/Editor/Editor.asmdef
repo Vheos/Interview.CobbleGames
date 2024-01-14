@@ -1,7 +1,9 @@
 {
     "name": "Vheos.Interview.CobbleGames.Editor",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:9281bf7305f503a4f971b61e8761f7db"
+    ],
     "includePlatforms": [
         "Editor"
     ],

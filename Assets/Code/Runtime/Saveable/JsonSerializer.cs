@@ -12,6 +12,8 @@ namespace Vheos.Interview.CobbleGames
 		{
 			this.settings = settings;
 		}
+		public JsonSerializer() : this(new())
+		{ }
 
 		// Methods
 		public string Serialize<T>(T toSerialize)

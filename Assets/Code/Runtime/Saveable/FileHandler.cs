@@ -7,18 +7,13 @@
 	using UnityEngine;
 
 	[Serializable]
-	public class FileHandler<T>
+	public class FileHandler<T> : IFileHandlerAsync<T>
 	{
 		// Fields
 		[field: SerializeField] public string FileName { get; private set; }
 		[field: SerializeField] public string FileExtension { get; private set; }
 		[field: SerializeField] public string FolderPathOverride { get; private set; }
-		private static readonly JsonSerializerSettings serializerSettings = new()
-		{
-			TypeNameHandling = TypeNameHandling.Auto,
-			Formatting = Formatting.Indented
-		};
-		private readonly ISerializer<string> serializer = new JsonSerializer(serializerSettings);
+		private readonly ISerializer<string> serializer = new JsonSerializer(new() { Formatting = Formatting.Indented });
 
 		// Methods
 		private string FolderPath

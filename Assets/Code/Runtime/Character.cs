@@ -1,11 +1,14 @@
 ﻿namespace Vheos.Interview.CobbleGames
 {
+	using System.Collections.Generic;
 	using UnityEngine;
 
-	public class Character : MonoBehaviour
+	public class Character : MonoBehaviour, ISaveable
 	{
 		// Dependencies
-		[field: SerializeField] public CharacterCollector Collector { get; private set; }
+		[field: SerializeField] public GuidHolder GuidHolder { get; private set; }
+		[field: SerializeField] public CharacterCollector CharacterCollector { get; private set; }
+		[field: SerializeField] public SaveableCollector SaveableCollector { get; private set; }
 		[field: SerializeField] public MoveToPosition Mover { get; private set; }
 		[field: SerializeField] public MoveToTransform Follower { get; private set; }
 		[field: SerializeField] public LookInMoveDirection Looker { get; private set; }
@@ -49,15 +52,37 @@
 			Mover.Target = position;
 			Mover.enabled = true;
 		}
+		public void SaveData(SaveableData data)
+			=> data.CharactersByGuid[GuidHolder.Guid] = new(this);
+
+		public void LoadData(SaveableData data)
+		{
+			if (!data.CharactersByGuid.TryGetValue(GuidHolder.Guid, out var dto))
+				return;
+
+			transform.position = dto.Position.UnityVector3;
+			Attributes = new()
+			{
+				MoveSpeed = dto.MoveSpeed,
+				TurnSpeed = dto.TurnSpeed,
+				Health = dto.Health,
+				Color = dto.Color.UnityColor,
+		};
+		}
 
 		// Unity
 		private void Awake()
 		{
 			Attributes ??= AttributesRange.Random;
-			Collector.Register(this);
+			CharacterCollector.Register(this);
+			SaveableCollector.Register(this);
 		}
 		private void OnDestroy()
-			=> Collector.Unregister(this);
+		{
+			CharacterCollector.Unregister(this);
+			SaveableCollector.Unregister(this);
+		}
+	}
 
 
 

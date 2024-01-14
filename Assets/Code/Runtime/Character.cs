@@ -58,5 +58,15 @@
 		}
 		private void OnDestroy()
 			=> Collector.Unregister(this);
+
+
+
+	#region SaveableData
+	public partial class SaveableData
+	{
+		// Fields
+		public Dictionary<string, CharacterDto> CharactersByGuid = new();
+
 	}
+	#endregion
 }

@@ -1,9 +1,6 @@
 ﻿namespace Vheos.Interview.CobbleGames
 {
 	using UnityEngine;
-	using Newtonsoft.Json;
-	using System.IO;
-	using System.Collections.Generic;
 
 	public class SaveableManager : MonoBehaviour
 	{
@@ -12,7 +9,7 @@
 
 		// Fields
 		[field: SerializeField] public FileHandler<SaveableData> FileHandler { get; private set; }
-		private bool isBusy;
+		private readonly bool isBusy;
 
 		// Methods
 		[ContextMenu(nameof(Save))]

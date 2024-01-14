@@ -67,7 +67,7 @@
 				TurnSpeed = dto.TurnSpeed,
 				Health = dto.Health,
 				Color = dto.Color.UnityColor,
-		};
+			};
 		}
 
 		// Unity

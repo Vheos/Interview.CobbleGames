@@ -24,5 +24,6 @@
 		}
 
 		public static Task WhenAll(this IEnumerable<Task> @this)
+			=> Task.WhenAll(@this);
 	}
 }

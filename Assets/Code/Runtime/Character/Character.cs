@@ -1,11 +1,15 @@
 ﻿namespace Vheos.Interview.CobbleGames
 {
+	using System;
+	using System.Collections.Generic;
 	using UnityEngine;
 
-	public class Character : MonoBehaviour
+	public class Character : MonoBehaviour, ISaveable
 	{
 		// Dependencies
-		[field: SerializeField] public CharacterCollector Collector { get; private set; }
+		[field: SerializeField] public GuidHolder GuidHolder { get; private set; }
+		[field: SerializeField] public CharacterCollector CharacterCollector { get; private set; }
+		[field: SerializeField] public SaveableCollector SaveableCollector { get; private set; }
 		[field: SerializeField] public MoveToPosition Mover { get; private set; }
 		[field: SerializeField] public MoveToTransform Follower { get; private set; }
 		[field: SerializeField] public LookInMoveDirection Looker { get; private set; }
@@ -13,6 +17,9 @@
 		[field: SerializeField] public Renderer Renderer { get; private set; }
 		[field: SerializeField] public SpriteRenderer LeaderIndicator { get; private set; }
 		private CharacterAttributes attributes;
+
+		// Events
+		public event Action<CharacterAttributes> OnAttributesChanged;
 
 		// Methods
 		public bool IsLeader
@@ -30,6 +37,8 @@
 				Looker.Speed = attributes.TurnSpeed;
 				Renderer.material.color = attributes.Color;
 				LeaderIndicator.color = attributes.Color;
+
+				OnAttributesChanged?.Invoke(attributes);
 			}
 		}
 		public void Follow(Transform target)
@@ -49,14 +58,46 @@
 			Mover.Target = position;
 			Mover.enabled = true;
 		}
+		public void SaveData(SaveableData data)
+			=> data.CharactersByGuid[GuidHolder.Guid] = new(this);
+
+		public void LoadData(SaveableData data)
+		{
+			if (!data.CharactersByGuid.TryGetValue(GuidHolder.Guid, out var dto))
+				return;
+
+			transform.position = dto.Position.UnityVector3;
+			Attributes = new()
+			{
+				MoveSpeed = dto.MoveSpeed,
+				TurnSpeed = dto.TurnSpeed,
+				Health = dto.Health,
+				Color = dto.Color.UnityColor,
+			};
+		}
 
 		// Unity
 		private void Awake()
 		{
 			Attributes ??= AttributesRange.Random;
-			Collector.Register(this);
+			CharacterCollector.Register(this);
+			SaveableCollector.Register(this);
 		}
 		private void OnDestroy()
-			=> Collector.Unregister(this);
+		{
+			CharacterCollector.Unregister(this);
+			SaveableCollector.Unregister(this);
+		}
 	}
+
+
+
+	#region SaveableData
+	public partial class SaveableData
+	{
+		// Fields
+		public Dictionary<string, CharacterDto> CharactersByGuid = new();
+
+	}
+	#endregion
 }

@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 1018374957625600925}
   - component: {fileID: 8746635360119791109}
   - component: {fileID: 7402027217314097301}
+  - component: {fileID: 2314317053712778909}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -131,7 +132,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 830efc667dde6d54eacddb7e88cea034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Collector>k__BackingField: {fileID: 11400000, guid: 10fe2191d27d7d747b22a09a64fd222c, type: 2}
+  <GuidHolder>k__BackingField: {fileID: 2314317053712778909}
+  <CharacterCollector>k__BackingField: {fileID: 11400000, guid: 10fe2191d27d7d747b22a09a64fd222c, type: 2}
+  <SaveableCollector>k__BackingField: {fileID: 11400000, guid: 1b13bf6d2f7bf4f4c8dbd1508f723dfc, type: 2}
   <Mover>k__BackingField: {fileID: 1018374957625600925}
   <Follower>k__BackingField: {fileID: 8746635360119791109}
   <Looker>k__BackingField: {fileID: 7402027217314097301}
@@ -185,6 +188,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Speed>k__BackingField: 10
+--- !u!114 &2314317053712778909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277917143789749660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a9f7fc207634e24cad71717ce07318d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Guid>k__BackingField: 
 --- !u!1 &2389066457870208852
 GameObject:
   m_ObjectHideFlags: 0

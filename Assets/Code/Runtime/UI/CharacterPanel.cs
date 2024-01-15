@@ -27,16 +27,26 @@
 			get => character;
 			set
 			{
-				if (value == character)
+				if (value == character && value)
 					return;
 
+				if (character != null)
+					character.OnAttributesChanged -= ApplyCharacterAttributes;
+
 				character = value;
-				Button.image.color = character.Attributes.Color.NewA(BackgroundOpacity);
-				LeaderImage.color = character.Attributes.Color;
-				MoveSpeedText.text = character.Attributes.MoveSpeed.ToString("F1");
-				TurnSpeedText.text = character.Attributes.TurnSpeed.ToString("F1");
-				HealthText.text = character.Attributes.Health.ToString();
+				ApplyCharacterAttributes(character.Attributes);
+
+				if (character != null)
+					character.OnAttributesChanged += ApplyCharacterAttributes;
 			}
+		}
+		private void ApplyCharacterAttributes(CharacterAttributes attributes)
+		{
+			Button.image.color = attributes.Color.NewA(BackgroundOpacity);
+			LeaderImage.color = attributes.Color;
+			MoveSpeedText.text = attributes.MoveSpeed.ToString("F1");
+			TurnSpeedText.text = attributes.TurnSpeed.ToString("F1");
+			HealthText.text = attributes.Health.ToString();
 		}
 		private void InvokeOnPanelClicked()
 			=> OnClicked.Invoke(character);

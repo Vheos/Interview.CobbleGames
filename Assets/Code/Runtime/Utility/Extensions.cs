@@ -3,6 +3,7 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using UnityEngine;
 
 	public static class Extensions
@@ -21,5 +22,8 @@
 			element = @this.FirstOrDefault(predicate);
 			return element != null;
 		}
+
+		public static Task WhenAll(this IEnumerable<Task> @this)
+			=> Task.WhenAll(@this);
 	}
 }

@@ -25,20 +25,22 @@
 - **Ogólne**
   - [x] schemat blokowy klas i rozwiązania
   - [x] implementacja dopiero po zatwierdzeniu
-  - [ ] komunikacja i sposób myślenia > programowanie
-  - [ ] grafika nie jest oceniana
+  - [x] komunikacja i sposób myślenia > programowanie
+  - [x] grafika nie jest oceniana
 - **Programowanie**
-  - [ ] czytelny i spójny kod
-  - [ ] poprawne commity
-  - [ ] interface
-  - [ ] async/await
-  - [ ] komendy prekompilatora
+  - [x] czytelny i spójny kod
+  - [x] poprawne commity
+  - [x] interface
+  - [x] async/await
+  - [x] komendy prekompilatora
 - **Unity**
   - [x] najnowszy LTS (`2022.3.16f1`)
   - [ ] A* zamiast NavMesh
   - [x] scriptable
   - [ ] addressable
-  - [ ] save/load mapy i atrybutów
+  - [ ] save/load system:
+    - [x] atrybutów postaci
+    - [ ] ułożenia mapy
 
 </br>
 

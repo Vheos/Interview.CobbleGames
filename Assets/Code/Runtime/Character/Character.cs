@@ -1,5 +1,6 @@
 ﻿namespace Vheos.Interview.CobbleGames
 {
+	using System;
 	using System.Collections.Generic;
 	using UnityEngine;
 
@@ -17,6 +18,9 @@
 		[field: SerializeField] public SpriteRenderer LeaderIndicator { get; private set; }
 		private CharacterAttributes attributes;
 
+		// Events
+		public event Action<CharacterAttributes> OnAttributesChanged;
+
 		// Methods
 		public bool IsLeader
 			=> Follower.Target == transform;
@@ -33,6 +37,8 @@
 				Looker.Speed = attributes.TurnSpeed;
 				Renderer.material.color = attributes.Color;
 				LeaderIndicator.color = attributes.Color;
+
+				OnAttributesChanged?.Invoke(attributes);
 			}
 		}
 		public void Follow(Transform target)

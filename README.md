@@ -1,6 +1,6 @@
 ## Deadline
 - [x] projektowanie: `2024-01-09`
-- [ ] implementacja: `2024-01-16 23:59:59`
+- [x] implementacja: `2024-01-16 23:59:59`
 
 </br>
 
@@ -36,17 +36,11 @@
 - **Unity**
   - [x] najnowszy LTS (`2022.3.16f1`)
   - [x] A* zamiast NavMesh
-  - [x] scriptable
-  - [ ] addressable
+  - [x] scriptable objects
+  - [x] addressables
   - [x] save/load system:
     - [x] atrybutów postaci
     - [x] ułożenia mapy
-
-</br>
-
-## Wykorzystane schematy
-- ScriptableObject events
-- ScriptableObject runtime collections
 
 </br>
 

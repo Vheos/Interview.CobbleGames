@@ -2,7 +2,7 @@
 {
 	using UnityEngine;
 
-	[CreateAssetMenu(fileName = nameof(CharacterAttributesRange), menuName = AssetMenuPaths.Root + nameof(CharacterAttributesRange))]
+	[CreateAssetMenu(fileName = nameof(CharacterAttributesRange), menuName = AssetMenuPaths.Ranges + nameof(CharacterAttributesRange))]
 	public class CharacterAttributesRange : ScriptableRange<CharacterAttributes>
 	{
 		public override CharacterAttributes Random

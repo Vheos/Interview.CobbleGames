@@ -43,12 +43,12 @@
 			where TValue : IComparable<TValue>
 		{
 			TValue value = comparer(element);
-			int i = @this.Count;
-			while (i > 0)
-				if (value.CompareTo(comparer(@this[--i])) < 0)
+			int i = @this.Count - 1;
+			for (; i >= 0; i--)
+				if (value.CompareTo(comparer(@this[i])) < 0)
 					break;
 
-			@this.Insert(i, element);
+			@this.Insert(i+1, element);
 		}
 	}
 }

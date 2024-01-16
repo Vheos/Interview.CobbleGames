@@ -68,10 +68,8 @@
 			if (leader == null || !pointer.TryGetWalkablePoint(Camera, out var point))
 				return;
 
-			IEnumerable<Node> path = Pathfinder.FindShortestPath(leader.transform.position, point);
-			IEnumerable<Vector3> positions = path.Select(node => node.WorldPosition);
-
-			leader.MoveAlong(positions);
+			IEnumerable<Vector3> path = Pathfinder.FindShortestPath(leader.transform.position, point);
+			leader.MoveAlong(path);
 		}
 
 		// Unity

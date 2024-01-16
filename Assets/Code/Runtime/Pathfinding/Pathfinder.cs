@@ -1,45 +1,31 @@
 ﻿namespace Vheos.Interview.CobbleGames
 {
 	using System;
+	using System.Collections;
 	using System.Collections.Generic;
 	using System.Linq;
 	using UnityEngine;
+	using NodeInfo = NodeInfo<UnityEngine.Vector3Int>;
+	using Stopwatch = System.Diagnostics.Stopwatch;
 
-	public partial class Pathfinder : MonoBehaviour
+	public class Pathfinder : MonoBehaviour
 	{
 		// Dependencies
 		[field: SerializeField] public BoxCollider WalkableArea { get; private set; }
+		[field: SerializeField] public Event OnObstacleTransformChanged { get; private set; }
+
 
 		// Fields
 		[field: SerializeField, Range(0.1f, 1f)] public float WalkerRadius { get; private set; }
 		[field: SerializeField] public bool CenterGrid { get; private set; }
-		private Node[,,] nodes = new Node[0, 0, 0];
-		private Vector3Int lengths;
+		public Grid3D Grid { get; private set; }
 		private Vector3 startCorner;
 		private int layerMask;
+		private readonly HashSet<Vector3Int> unwalkableNodes = new();
+		private bool isDirty;
 
 		// Methods
-		public IEnumerable<Node> Nodes
-		{
-			get
-			{
-				foreach (var node in nodes)
-					yield return node;
-			}
-		}
-		private IEnumerable<Vector3Int> NeighbourDirections
-		{
-			get
-			{
-				yield return new(+1, 0, 0);
-				yield return new(-1, 0, 0);
-				yield return new(0, +1, 0);
-				yield return new(0, -1, 0);
-				yield return new(0, 0, +1);
-				yield return new(0, 0, -1);
-			}
-		}
-		private float NodeMoveCost
+		private float MoveCost
 			=> 1f;
 		private void Initialize()
 		{
@@ -47,58 +33,49 @@
 				return;
 
 			Vector3 nodeSize = WalkableArea.size / WalkerRadius;
-			lengths = Vector3Int.one + nodeSize.RoundDown();
-			nodes = new Node[lengths.x, lengths.y, lengths.z];
+			Vector3Int gridSize = Vector3Int.one + nodeSize.RoundDown();
+			Grid = new(gridSize);
+
 			startCorner = WalkableArea.center - WalkableArea.size / 2f;
 			if (CenterGrid)
 				startCorner += (nodeSize - nodeSize.RoundDown()) / 2f;
+
 			layerMask = Layer.Obstacle.GetMask();
 
-			for (int x = 0; x < lengths.x; x++)
-				for (int y = 0; y < lengths.y; y++)
-					for (int z = 0; z < lengths.z; z++)
-						nodes[x, y, z] = new(this, new(x, y, z));
 		}
-		private float CalculateHeuristicCost(Node from, Node to)
-			=> (to.Id - from.Id).magnitude;
-		public bool IsNodeWalkable(Vector3Int id)
-			=> !Physics.CheckSphere(IdToWorldPosition(id), WalkerRadius, layerMask);
-		public IEnumerable<Node> GetNeighbourNodes(Node node)
-			=> from direction in NeighbourDirections
-			   let id = node.Id + direction
-			   where id.IsBetween(Vector3Int.zero, lengths - Vector3Int.one)
-			   select GetNode(id);
-
-		// Conversions
-		public Vector3 IdToLocalPosition(Vector3Int id)
-			=> startCorner + (Vector3)id * WalkerRadius;
-		public Vector3 IdToWorldPosition(Vector3Int id)
-			=> WalkableArea.transform.TransformPoint(IdToLocalPosition(id));
-		public Vector3Int LocalPositionToId(Vector3 localPosition)
-			=> ((localPosition - startCorner) / WalkerRadius).Round();
-		public Vector3Int WorldPositionToId(Vector3 worldPosition)
-			=> LocalPositionToId(WalkableArea.transform.InverseTransformPoint(worldPosition));
-		public Node LocalPositionToNode(Vector3 localPosition)
-			=> GetNode(LocalPositionToId(localPosition));
-		public Node WorldPositionToNode(Vector3 worldPosition)
-			=> GetNode(WorldPositionToId(worldPosition));
-
-		// Core
-		public Node GetNode(Vector3Int id)
-			=> nodes[id.x, id.y, id.z];
-		public IReadOnlyCollection<Node> FindShortestPath(Vector3 from, Vector3 to)
-			=> FindShortestPath(WorldPositionToNode(from), WorldPositionToNode(to));
-		public IReadOnlyCollection<Node> FindShortestPath(Node startNode, Node endNode)
+		private float CalculateHeuristicCost(Vector3Int fromNode, Vector3Int toNode)
+			=> (toNode - fromNode).magnitude;
+		public bool IsWalkable(Vector3Int node)
+			=> !unwalkableNodes.Contains(node);
+		private void UpdateWalkability()
 		{
-			if (!endNode.IsWalkable)
-				return Array.Empty<Node>();
+			unwalkableNodes.Clear();
+			foreach (var node in Grid.Nodes)
+				if (Physics.CheckSphere(NodeToWorldPosition(node), WalkerRadius, layerMask))
+					unwalkableNodes.Add(node);
+		}
+		private void RequestWalkabilityUpdate()
+			=> isDirty = true;
+		private IEnumerator UpdateWalkability_Delayed()
+		{
+			yield return new WaitForEndOfFrame();
+			UpdateWalkability();
+		}
+		private IReadOnlyCollection<Vector3Int> FindShortestPath(Vector3Int fromNode, Vector3Int toNode)
+		{
+			if (fromNode == toNode || !IsWalkable(toNode))
+				return Array.Empty<Vector3Int>();
 
-			Dictionary<Node, NodeInfo> infosByNode = new();
-			NodeInfo GetNodeInfo(Node node)
-				=> infosByNode.GetOrAdd(node, () => new(node, endNode, CalculateHeuristicCost));
+#if DEBUG
+			Stopwatch stopwatch = Stopwatch.StartNew();
+#endif
 
-			NodeInfo start = GetNodeInfo(startNode);
-			NodeInfo end = GetNodeInfo(endNode);
+			Dictionary<Vector3Int, NodeInfo> infosByNode = new();
+			NodeInfo GetNodeInfo(Vector3Int node)
+				=> infosByNode.GetOrAdd(node, () => new(node, toNode, CalculateHeuristicCost));
+
+			NodeInfo start = GetNodeInfo(fromNode);
+			NodeInfo end = GetNodeInfo(toNode);
 			List<NodeInfo> potentials = new() { start };
 
 			while (potentials.Count > 0)
@@ -111,33 +88,69 @@
 				current.AlreadyTraversed = true;
 
 				var validNeighbours =
-					from node in current.Node.NeighbourNodes
+					from node in Grid.GetNeighbourNodes(current.Node)
 					let info = GetNodeInfo(node)
-					where node.IsWalkable && !info.AlreadyTraversed
+					where IsWalkable(node) && !info.AlreadyTraversed
 					select info;
 
 				foreach (var neighbour in validNeighbours)
 				{
-					bool isPotential = potentials.Contains(neighbour);
-					float moveCost = current.MoveCost + NodeMoveCost;
-					if (isPotential && moveCost >= neighbour.MoveCost)
+					bool alreadyInPotentials = potentials.Contains(neighbour);
+					float moveCost = current.MoveCost + MoveCost;
+					if (alreadyInPotentials && moveCost >= neighbour.MoveCost)
 						continue;
 
 					neighbour.Previous = current;
 					neighbour.MoveCost = moveCost;
-					if (!isPotential)
+					if (!alreadyInPotentials)
 						potentials.InsertDescending(neighbour, n => n.TotalCost);
 				}
 			}
 
-			Stack<Node> path = new();
+			Stack<Vector3Int> path = new();
 			for (NodeInfo i = end; i != null; i = i.Previous)
 				path.Push(i.Node);
 
+#if DEBUG
+			stopwatch.Stop();
+			Debug.Log($"Found path from {fromNode} to {toNode} in {path.Count} moves / {stopwatch.ElapsedMilliseconds}ms:\n" +
+				$"Evaluated cost of >{infosByNode.Count} nodes\n" +
+				string.Join("", path.Select(node => $"• {node}\n")));
+#endif
+
 			return path;
 		}
+		public IEnumerable<Vector3> FindShortestPath(Vector3 fromWorld, Vector3 toWorld)
+			=> FindShortestPath(WorldPositionToNode(fromWorld), WorldPositionToNode(toWorld))
+			.Select(NodeToWorldPosition);
+
+		// Conversions
+		public Vector3 NodeToLocalPosition(Vector3Int node)
+			=> startCorner + (Vector3)node * WalkerRadius;
+		public Vector3 NodeToWorldPosition(Vector3Int node)
+			=> WalkableArea.transform.TransformPoint(NodeToLocalPosition(node));
+		public Vector3Int LocalPositionToNode(Vector3 localPosition)
+			=> ((localPosition - startCorner) / WalkerRadius).Round();
+		public Vector3Int WorldPositionToNode(Vector3 worldPosition)
+			=> LocalPositionToNode(WalkableArea.transform.InverseTransformPoint(worldPosition));
 
 		// Unity
-		private void Start() => Initialize();
+		private void Awake()
+		{
+			Initialize();
+			RequestWalkabilityUpdate();
+		}
+		private void OnEnable()
+			=> OnObstacleTransformChanged.Subscribe(RequestWalkabilityUpdate);
+		private void FixedUpdate()
+		{
+			if (isDirty)
+			{
+				StartCoroutine(UpdateWalkability_Delayed());
+				isDirty = false;
+			}
+		}
+		private void OnDisable()
+			=> OnObstacleTransformChanged.Unsubscribe(RequestWalkabilityUpdate);
 	}
 }

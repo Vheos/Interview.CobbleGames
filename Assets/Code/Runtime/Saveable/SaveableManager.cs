@@ -23,11 +23,17 @@
 			SaveableData data = new();
 			SaveableCollector.Items.DoForEach(t => t.SaveData(data));
 			await FileHandler.WriteAsync(data);
+#if DEBUG
+			Debug.Log($"Successfully saved file to: {FileHandler.FullPath}");
+#endif
 		}
 		private async Task Load_Internal()
 		{
 			SaveableData data = await FileHandler.ReadAsync();
 			SaveableCollector.Items.DoForEach(t => t.LoadData(data));
+#if DEBUG
+			Debug.Log($"Successfully loaded file from: {FileHandler.FullPath}");
+#endif
 		}
 		private async Task<bool> TryRun(Task task)
 		{

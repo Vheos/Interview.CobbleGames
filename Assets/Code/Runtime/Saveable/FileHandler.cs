@@ -16,9 +16,9 @@
 		private readonly ISerializer<string> serializer = new JsonSerializer(new() { Formatting = Formatting.Indented });
 
 		// Methods
-		private string FolderPath
+		public string FolderPath
 			=> string.IsNullOrEmpty(FolderPathOverride) ? Application.persistentDataPath : FolderPathOverride;
-		private string FullPath
+		public string FullPath
 			=> Path.Combine(FolderPath, Path.ChangeExtension(FileName, FileExtension));
 		public async Task WriteAsync(T data)
 		{

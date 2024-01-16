@@ -10,6 +10,7 @@
 		UI = 5,
 
 		// User
-		Walkable = 6,
+		Walkable,
+		Obstacle,
 	}
 }

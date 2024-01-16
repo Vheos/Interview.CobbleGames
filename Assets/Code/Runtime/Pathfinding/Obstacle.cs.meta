@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 45b1befb43d211b469121df8eadee161
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - <CharacterCollector>k__BackingField: {instanceID: 0}
+  - <SaveableCollector>k__BackingField: {instanceID: 0}
+  - <Mover>k__BackingField: {instanceID: 0}
+  - <Follower>k__BackingField: {instanceID: 0}
+  - <Looker>k__BackingField: {instanceID: 0}
+  - <AttributesRange>k__BackingField: {instanceID: 0}
+  - <Renderer>k__BackingField: {instanceID: 0}
+  - <LeaderIndicator>k__BackingField: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

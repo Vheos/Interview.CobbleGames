@@ -7,8 +7,8 @@
 	{
 		// Fields
 		[field: SerializeField] public T Target { get; set; }
-		[field: SerializeField, Range(0f, 10f)] public float Speed { get; set; }
-		[field: SerializeField, Range(0f, 10f)] public float MaxDistance { get; private set; }
+		[field: SerializeField, Range(0.1f, 10f)] public float Speed { get; set; }
+		[field: SerializeField, Range(0.1f, 10f)] public float MaxDistance { get; private set; }
 		[field: SerializeField, Range(0f, 10f)] public float MinDistance { get; private set; }
 		[field: SerializeField] public bool Autorestart { get; private set; }
 
@@ -29,22 +29,20 @@
 					: DistanceThreshold.Within;
 			}
 		}
-
 		private void Step()
 		{
 			DistanceThreshold threshold = Threshold;
-			if (threshold == DistanceThreshold.Within)
-				return;
-
-			Vector3 step = Time.deltaTime * Speed * Direction;
-			transform.position += threshold == DistanceThreshold.TooFar ? step : -step;
-
-			if (Threshold != DistanceThreshold.Within)
-				return;
-
-			OnTargetReached?.Invoke();
-			if (!Autorestart)
-				enabled = false;
+			if (threshold != DistanceThreshold.Within)
+			{
+				Vector3 step = Time.deltaTime * Speed * Direction;
+				transform.position += threshold == DistanceThreshold.TooFar ? step : -step;
+			}
+			else
+			{
+				OnTargetReached?.Invoke();
+				if (!Autorestart)
+					enabled = false;
+			}
 		}
 
 		// Unity

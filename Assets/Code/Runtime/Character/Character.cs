@@ -59,7 +59,6 @@
 		}
 		public void MoveTo(Vector3 position)
 		{
-			Debug.Log($"Moving to {position}");
 			Mover.Target = position;
 			Mover.enabled = true;
 		}

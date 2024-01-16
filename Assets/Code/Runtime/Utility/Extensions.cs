@@ -48,7 +48,7 @@
 				if (value.CompareTo(comparer(@this[i])) < 0)
 					break;
 
-			@this.Insert(i+1, element);
+			@this.Insert(i + 1, element);
 		}
 	}
 }

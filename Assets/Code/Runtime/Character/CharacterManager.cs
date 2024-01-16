@@ -1,6 +1,7 @@
 ﻿namespace Vheos.Interview.CobbleGames
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Linq;
 	using UnityEngine;
 
@@ -10,6 +11,7 @@
 		[field: SerializeField] public Camera Camera { get; private set; }
 		[field: SerializeField] public CharacterCollector Collector { get; private set; }
 		[field: SerializeField] public Character Prefab { get; private set; }
+		[field: SerializeField] public Pathfinder Pathfinder { get; private set; }
 
 		// Fields
 		private Character leader;
@@ -66,7 +68,10 @@
 			if (leader == null || !pointer.TryGetWalkablePoint(Camera, out var point))
 				return;
 
-			leader.MoveTo(point);
+			IEnumerable<Node> path = Pathfinder.FindShortestPath(leader.transform.position, point);
+			IEnumerable<Vector3> positions = path.Select(node => node.WorldPosition);
+
+			leader.MoveAlong(positions);
 		}
 
 		// Unity

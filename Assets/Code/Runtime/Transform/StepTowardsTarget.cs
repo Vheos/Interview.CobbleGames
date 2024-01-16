@@ -42,7 +42,7 @@
 				OnTargetReached?.Invoke();
 				if (!Autorestart)
 					enabled = false;
-			}			
+			}
 		}
 
 		// Unity

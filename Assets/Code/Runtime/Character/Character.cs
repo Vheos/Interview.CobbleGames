@@ -19,7 +19,7 @@
 		private CharacterAttributes attributes;
 
 		// Fields
-		IEnumerator<Vector3> pathEnumerator;
+		private IEnumerator<Vector3> pathEnumerator;
 
 		// Events
 		public event Action<CharacterAttributes> OnAttributesChanged;

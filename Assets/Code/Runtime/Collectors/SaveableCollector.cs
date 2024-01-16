@@ -2,7 +2,7 @@
 {
 	using UnityEngine;
 
-	[CreateAssetMenu(fileName = nameof(SaveableCollector), menuName = AssetMenuPaths.Root + nameof(SaveableCollector))]
+	[CreateAssetMenu(fileName = nameof(SaveableCollector), menuName = AssetMenuPaths.Collectors + nameof(SaveableCollector))]
 	public class SaveableCollector : ScriptableCollector<ISaveable>
 	{ }
 }

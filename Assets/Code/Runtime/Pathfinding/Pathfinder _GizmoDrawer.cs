@@ -7,7 +7,7 @@ namespace Vheos.Interview.CobbleGames
 	public static class Pathfinder_GizmoDrawer
 	{
 		private const float SphereRadius = 0.25f;
-		private static GUIStyle TextStyle = new()
+		private static readonly GUIStyle TextStyle = new()
 		{
 			normal = new() { textColor = Color.black },
 		};

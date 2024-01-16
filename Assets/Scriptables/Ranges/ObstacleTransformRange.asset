@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9cb64738b5f46f46a4903293bb99fd1, type: 3}
-  m_Name: TransformRange
+  m_Name: ObstacleTransformRange
   m_EditorClassIdentifier: 
   <Min>k__BackingField:
     Position:

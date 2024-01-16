@@ -8,7 +8,7 @@
 		[SerializeField] private Action action;
 		[SerializeField] private ActionTiming timing;
 
-		
+
 #if !DEBUG
 		// Methods
 		private void PerformAction()

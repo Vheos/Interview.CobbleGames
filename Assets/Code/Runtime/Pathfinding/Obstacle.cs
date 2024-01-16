@@ -29,7 +29,7 @@
 			SaveableCollector.Register(this);
 		}
 
-		private void OnDestroy() 
+		private void OnDestroy()
 			=> SaveableCollector.Unregister(this);
 	}
 
@@ -39,7 +39,7 @@
 	public partial class SaveableData
 	{
 		// Fields
-		public Dictionary<string, LocalTransformDto> ObstacleTransformsByGuid = new();
+		public Dictionary<string, TransformDto> ObstacleTransformsByGuid = new();
 	}
 	#endregion
 }

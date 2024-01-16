@@ -71,7 +71,7 @@
 
 		// Conversions
 		public Vector3 IdToLocalPosition(Vector3Int id)
-			=> startCorner + id.ToVector3() * WalkerRadius;
+			=> startCorner + (Vector3)id * WalkerRadius;
 		public Vector3 IdToWorldPosition(Vector3Int id)
 			=> WalkableArea.transform.TransformPoint(IdToLocalPosition(id));
 		public Vector3Int LocalPositionToId(Vector3 localPosition)
@@ -138,9 +138,6 @@
 		}
 
 		// Unity
-		private void Start()
-		{
-			Initialize();
-		}
+		private void Start() => Initialize();
 	}
 }

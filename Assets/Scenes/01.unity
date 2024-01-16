@@ -342,53 +342,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1ae09d9aaee46a4e8d1283b05de0629, type: 3}
---- !u!1 &386506563
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 386506565}
-  - component: {fileID: 386506564}
-  m_Layer: 0
-  m_Name: Pathfinder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &386506564
+--- !u!114 &386506564 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 7140287373119979575, guid: 06a5cd5be761f6f4b996f86f7f7451e5, type: 3}
+  m_PrefabInstance: {fileID: 4732641578603978889}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 386506563}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4e162531dea08d4fb2c49210c0609dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <WalkableArea>k__BackingField: {fileID: 1012081314}
-  <WalkerRadius>k__BackingField: 0.5
-  <CenterGrid>k__BackingField: 1
---- !u!4 &386506565
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 386506563}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &387389864
 GameObject:
   m_ObjectHideFlags: 0
@@ -2117,6 +2081,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f163e738f06af2a4aa1f3ebb3ae6ec0a, type: 3}
+--- !u!1001 &4732641578603978889
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2985922069055649410, guid: 06a5cd5be761f6f4b996f86f7f7451e5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985922069055649410, guid: 06a5cd5be761f6f4b996f86f7f7451e5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985922069055649410, guid: 06a5cd5be761f6f4b996f86f7f7451e5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985922069055649410, guid: 06a5cd5be761f6f4b996f86f7f7451e5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985922069055649410, guid: 06a5cd5be761f6f4b996f86f7f7451e5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985922069055649410, guid: 06a5cd5be761f6f4b996f86f7f7451e5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985922069055649410, guid: 06a5cd5be761f6f4b996f86f7f7451e5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985922069055649410, guid: 06a5cd5be761f6f4b996f86f7f7451e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985922069055649410, guid: 06a5cd5be761f6f4b996f86f7f7451e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985922069055649410, guid: 06a5cd5be761f6f4b996f86f7f7451e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617274533323368099, guid: 06a5cd5be761f6f4b996f86f7f7451e5, type: 3}
+      propertyPath: m_Name
+      value: Pathfinder
+      objectReference: {fileID: 0}
+    - target: {fileID: 7140287373119979575, guid: 06a5cd5be761f6f4b996f86f7f7451e5, type: 3}
+      propertyPath: <WalkableArea>k__BackingField
+      value: 
+      objectReference: {fileID: 1012081314}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 06a5cd5be761f6f4b996f86f7f7451e5, type: 3}
 --- !u!1001 &5920965676936529892
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2442,7 +2467,7 @@ SceneRoots:
   - {fileID: 1012081313}
   - {fileID: 3509324180849321012}
   - {fileID: 2609034932835690065}
-  - {fileID: 386506565}
+  - {fileID: 4732641578603978889}
   - {fileID: 1134927557}
   - {fileID: 387389865}
   - {fileID: 1640780472}

@@ -35,12 +35,12 @@
   - [x] komendy prekompilatora
 - **Unity**
   - [x] najnowszy LTS (`2022.3.16f1`)
-  - [ ] A* zamiast NavMesh
+  - [x] A* zamiast NavMesh
   - [x] scriptable
   - [ ] addressable
-  - [ ] save/load system:
+  - [x] save/load system:
     - [x] atrybutów postaci
-    - [ ] ułożenia mapy
+    - [x] ułożenia mapy
 
 </br>
 

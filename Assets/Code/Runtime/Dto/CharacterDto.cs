@@ -1,9 +1,12 @@
 ﻿namespace Vheos.Interview.CobbleGames
 {
+	using System;
+
+	[Serializable]
 	public struct CharacterDto
 	{
 		// Fields
-		public Vector3Dto Position;
+		public TransformDto LocalTransform;
 		public float MoveSpeed;
 		public float TurnSpeed;
 		public int Health;
@@ -12,7 +15,7 @@
 		// Constructors
 		public CharacterDto(Character character)
 		{
-			Position = new(character.transform.position);
+			LocalTransform = new(character.transform);
 			MoveSpeed = character.Attributes.MoveSpeed;
 			TurnSpeed = character.Attributes.TurnSpeed;
 			Health = character.Attributes.Health;

@@ -2,27 +2,27 @@
 {
 	using System;
 
-	public class NodeInfo
+	public class NodeInfo<T>
 	{
 		// Fields
-		public readonly Node Node;
+		public readonly T Node;
 		public readonly float HeuristicCost;
-		public NodeInfo Previous;
+		public NodeInfo<T> Previous;
 		public float MoveCost;
 		public bool AlreadyTraversed;
 
 		// Constructors
-		public NodeInfo(Node node, Node endNode, Func<Node, Node, float> heuristicFunc)
+		public NodeInfo(T id, T endNode, Func<T, T, float> heuristicFunc)
 		{
-			Node = node;
-			HeuristicCost = heuristicFunc(node, endNode);
+			Node = id;
+			HeuristicCost = heuristicFunc(id, endNode);
 		}
 
 		// Methods
 		public float TotalCost
 			=> MoveCost + HeuristicCost;
 		public string DebugText
-			=> $"{Node.Id}   /   {MoveCost:F1} + {HeuristicCost:F1} = {TotalCost:F1}";
+			=> $"{Node}   /   {MoveCost:F1} + {HeuristicCost:F1} = {TotalCost:F1}";
 
 	}
 }

@@ -51,6 +51,7 @@ MonoBehaviour:
   <SaveableCollector>k__BackingField: {fileID: 11400000, guid: 1b13bf6d2f7bf4f4c8dbd1508f723dfc, type: 2}
   <Collider>k__BackingField: {fileID: 3078639001707554157}
   <TransformRange>k__BackingField: {fileID: 11400000, guid: 4d4610368f15acc45b8bd0c09f0d9379, type: 2}
+  <OnTransformChanged>k__BackingField: {fileID: 11400000, guid: 481769fe462727d4a9313089846c2a5e, type: 2}
 --- !u!114 &3841643883598974413
 MonoBehaviour:
   m_ObjectHideFlags: 0

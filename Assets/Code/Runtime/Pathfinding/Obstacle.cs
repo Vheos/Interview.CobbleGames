@@ -10,6 +10,8 @@
 		[field: SerializeField] public SaveableCollector SaveableCollector { get; private set; }
 		[field: SerializeField] public Collider Collider { get; private set; }
 		[field: SerializeField] public TransformRange TransformRange { get; private set; }
+		[field: SerializeField] public Event OnTransformChanged { get; private set; }
+
 
 		// Methods
 		public void SaveData(SaveableData data)
@@ -19,16 +21,20 @@
 			if (!data.ObstacleTransformsByGuid.TryGetValue(GuidHolder.Guid, out var dto))
 				return;
 
+			UpdateTransform(dto);
+		}
+		public void UpdateTransform(TransformDto dto)
+		{
 			dto.ApplyTo(transform);
+			OnTransformChanged.Invoke();
 		}
 
 		// Unity
 		private void Awake()
 		{
-			TransformRange.Random.ApplyTo(transform);
+			UpdateTransform(TransformRange.Random);
 			SaveableCollector.Register(this);
 		}
-
 		private void OnDestroy()
 			=> SaveableCollector.Unregister(this);
 	}
